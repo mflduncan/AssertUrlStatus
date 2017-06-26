@@ -1,0 +1,93 @@
+{
+    "manifestVersion": 1,
+    "id": "AsserUrlStatus",
+    "version": "0.1.0",
+    "name": "Assert URL Status",
+    "publisher": "michaelduncan",
+    "description": "Assert the Status Code of a given URL",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "icon.png"
+    },
+    "categories": [
+        "Test"
+    ],
+	"tags": [
+        "url", "status code", "test url", "check url"
+    ],
+    "branding": {
+        "color": "rgb(142,68,173)",
+        "theme": "light"
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/fabrikam-fiber-inc/myextension"
+    },
+	"groups": [
+		{
+			"name": "basicConfiguration",
+			"displayName": "Basic Configuration",
+			"isExpanded": true
+		},
+		{
+			"name": "advancedConfiguration",
+			"displayName": "Advanced Configuration",
+			"isExpanded": false
+		}
+	],
+	"inputs": [
+		{
+			"name":  "Url",
+			"type":  "string",
+			"label":  "URL to be tested",
+			"defaultValue":  "",
+			"required":  true,
+			"groupName":  "basicConfiguration"
+		},
+		{
+			"name":  "StatusCode",
+			"type":  "integer",
+			"label":  "Status Code expected",
+			"defaultValue":  200,
+			"required":  true,
+			"groupName":  "basicConfiguration"
+		},
+		{
+			"name":  "Timeout",
+			"type":  "integer",
+			"label":  "Timeout (in seconds)",
+			"defaultValue":  100,
+			"required":  true,
+			"groupName":  "advancedConfiguration"
+		},
+		{
+			"name":  "IgnoreCertificate",
+			"type":  "boolean",
+			"label":  "Ignore Certificates",
+			"helpMarkDown":  "If true, the task will ignore certificate errors over https",
+			"defaultValue":  false,
+			"required":  true,
+			"groupName":  "advancedConfiguration"
+		},
+		{
+			"name":  "AllowRedirects",
+			"type":  "boolean",
+			"label":  "Allow Redirects ",
+			"helpMarkDown":  "If true, the task will only check that status of the site once it has finished redirecting",
+			"defaultValue":  false,
+			"required":  true,
+			"groupName":  "advancedConfiguration"
+		},
+	]
+	"execution": {
+		"PowerShell": {
+			"target":  "$(currentDirectory)\\Assert-UrlStatus.ps1",
+			"argumentFormat":  "",
+			"workingDirectory":  "$(currentDirectory)"
+		}
+	} 
+}
